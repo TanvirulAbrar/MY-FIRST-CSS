@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>paragraph</title>
+    <style>
+        li{
+            color: turquoise;
+            background-color: aqua;
+            width: 10%;
+        }
+        p{
+            color: black;
+            text-align: center;
+        }
+        #c{
+            color:blue;
+        }
+        .d,.e{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    
+<body>
+  <h2>Pick a color from anywhere on your screen:</h2>
+  <button id="pickColor">Pick Color</button>
+  <p>Selected Color: <span id="colorValue">None</span></p>
+  <div id="colorPreview" style="width:50px; height:50px; border:1px solid #000;"></div>
+
+  <script>
+    const button = document.getElementById('pickColor');
+    const colorValue = document.getElementById('colorValue');
+    const colorPreview = document.getElementById('colorPreview');
+
+    button.addEventListener('click', async () => {
+      if (!window.EyeDropper) {
+        alert('Sorry, your browser does not support the EyeDropper API.');
+        return;
+      }
+      try {
+        const eyeDropper = new EyeDropper();
+        const result = await eyeDropper.open();
+        colorValue.textContent = result.sRGBHex;
+        colorPreview.style.backgroundColor = result.sRGBHex;
+      } catch (err) {
+        console.error(err);
+      }
+    });
+  </script>
+
+
+    <h3 style="color:aqua;">learning css</h3>
+    <p style="background-color: #caffba; width: 50%;">my name</p>
+    <p style="background-color: #caffba; width: 50%;">my name</p>
+    <p style="background-color: #caffba; width: 50%;">my name</p>
+    <ul>
+        <li style="color: rebeccapurple;">inline</li>
+        <li>internal</li>
+        <li>external</li>
+    </ul>
+    <p id="c">my color</p>
+    <p class="d" style="text-align: end;">my color</p>
+    <p class="e">my color</p>
+
+</body>
+</html>
